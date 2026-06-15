@@ -1,502 +1,219 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>기말고사 공부 플랜 2026</title>
-<style>
-:root {
-  --bg:#f5f5f0;--surface:#fff;--surface2:#fafafa;
-  --border:#e0e0e0;--border2:#f0f0f0;
-  --text:#1a1a1a;--text2:#555;--text3:#888;--text4:#bbb;
-  --prog-bg:#f0f0f0;--btn-bg:#fff;--btn-border:#ddd;--btn-hover:#f0f0f0;
-  --wkd-bg:#EEEDFE;--wkd-c:#3C3489;
-  --wknd-bg:#FBEAF0;--wknd-c:#72243E;
-  --exam-bg:#FCEBEB;--exam-c:#A32D2D;
-}
-@media(prefers-color-scheme:dark){:root{
-  --bg:#111110;--surface:#1e1e1c;--surface2:#252523;
-  --border:#333331;--border2:#2a2a28;
-  --text:#e8e6e0;--text2:#b0aea8;--text3:#888780;--text4:#555551;
-  --prog-bg:#2a2a28;--btn-bg:#1e1e1c;--btn-border:#3a3a38;--btn-hover:#2a2a28;
-  --wkd-bg:#26215C;--wkd-c:#CECBF6;
-  --wknd-bg:#4B1528;--wknd-c:#F4C0D1;
-  --exam-bg:#501313;--exam-c:#F7C1C1;
-}}
-*{box-sizing:border-box;margin:0;padding:0}
-body{font-family:'Apple SD Gothic Neo','Malgun Gothic',sans-serif;background:var(--bg);color:var(--text);padding:20px}
-.topbar{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:6px;gap:12px;flex-wrap:wrap}
-h1{font-size:20px;font-weight:600}
-.subtitle{font-size:13px;color:var(--text3);margin-bottom:16px}
-.dl-btn{display:inline-flex;align-items:center;gap:6px;font-size:12px;padding:6px 14px;border-radius:8px;border:1px solid var(--btn-border);background:var(--btn-bg);color:var(--text2);cursor:pointer;font-family:inherit;white-space:nowrap}
-.dl-btn:hover{background:var(--btn-hover)}
-.priority{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px}
-.pr{font-size:12px;padding:4px 12px;border-radius:20px}
-.pr1{background:#EEEDFE;color:#3C3489} .pr2{background:#E6F1FB;color:#185FA5} .pr3{background:#E1F5EE;color:#085041}
-@media(prefers-color-scheme:dark){
-  .pr1{background:#26215C;color:#CECBF6}.pr2{background:#042C53;color:#B5D4F4}.pr3{background:#04342C;color:#9FE1CB}
-}
-.math-plan{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:14px 16px;margin-bottom:16px}
-.math-plan h3{font-size:13px;font-weight:600;color:var(--text2);margin-bottom:10px}
-.math-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:6px}
-.mc{background:var(--surface2);border-radius:8px;padding:8px 10px;font-size:12px}
-.mc-label{color:var(--text3);margin-bottom:3px;font-size:11px}
-.mc-val{color:var(--text);font-weight:500}
-.progress-wrap{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:14px 16px;margin-bottom:16px}
-.progress-title{font-size:13px;font-weight:600;margin-bottom:10px;color:var(--text2)}
-.prog-row{display:flex;align-items:center;gap:10px;margin-bottom:7px}
-.prog-row:last-child{margin-bottom:0}
-.prog-label{font-size:12px;color:var(--text2);width:130px;min-width:130px}
-.prog-bar{flex:1;height:7px;background:var(--prog-bg);border-radius:4px;overflow:hidden}
-.prog-fill{height:100%;border-radius:4px;transition:width 0.3s}
-.prog-count{font-size:12px;color:var(--text3);width:36px;text-align:right}
-.nav{display:flex;gap:5px;flex-wrap:wrap;margin-bottom:16px}
-.nt{padding:5px 11px;border-radius:8px;border:1px solid var(--btn-border);font-size:12px;cursor:pointer;background:var(--btn-bg);color:var(--text3);white-space:nowrap;font-family:inherit}
-.nt:hover{background:var(--btn-hover)}
-.nt.on{background:var(--wkd-bg);color:var(--wkd-c);border-color:var(--wkd-c);font-weight:600}
-.pg{display:none}.pg.on{display:block}
-.dh{border-radius:12px 12px 0 0;padding:11px 16px;display:flex;justify-content:space-between;align-items:flex-start}
-.dh.wkd{background:var(--wkd-bg);color:var(--wkd-c)}
-.dh.wknd{background:var(--wknd-bg);color:var(--wknd-c)}
-.dh.exam{background:var(--exam-bg);color:var(--exam-c)}
-.dt{font-size:14px;font-weight:600}
-.ds{font-size:11px;opacity:.8;text-align:right;line-height:1.6}
-.body{border:1px solid var(--border);border-top:none;border-radius:0 0 12px 12px;background:var(--surface);margin-bottom:8px}
-.tb{border-bottom:1px solid var(--border2)}.tb:last-child{border-bottom:none}
-.tbh{display:flex;align-items:center;gap:10px;padding:7px 16px;background:var(--surface2);border-bottom:1px solid var(--border2)}
-.tt{font-size:11px;font-weight:600;color:var(--text3);min-width:120px}
-.tl{font-size:11px;color:var(--text4)}
-.rows{padding:8px 16px 10px;display:flex;flex-direction:column;gap:7px}
-.row{display:flex;align-items:flex-start;gap:9px;line-height:1.55}
-input[type=checkbox]{width:15px;height:15px;min-width:15px;margin-top:2px;flex-shrink:0;cursor:pointer;accent-color:#534AB7}
-.rt{font-size:13px;color:var(--text);flex:1}
-.rt.x{color:var(--text4);text-decoration:line-through}
-.tag{display:inline-block;font-size:11px;padding:1px 7px;border-radius:20px;margin-right:3px;white-space:nowrap;vertical-align:middle;font-weight:500}
-.tM{background:#EEEDFE;color:#3C3489}.tI{background:#E6F1FB;color:#185FA5}
-.tE{background:#E1F5EE;color:#0F6E56}.tS{background:#EAF3DE;color:#27500A}
-.tA{background:#FAEEDA;color:#854F0B}.tR{background:#FAECE7;color:#993C1D}
-.tN{background:#F1EFE8;color:#5F5E5A}.tX{background:#FCEBEB;color:#A32D2D}
-.tP{background:#FBEAF0;color:#72243E}
-@media(prefers-color-scheme:dark){
-  .tM{background:#26215C;color:#CECBF6}.tI{background:#042C53;color:#B5D4F4}
-  .tE{background:#04342C;color:#9FE1CB}.tS{background:#173404;color:#C0DD97}
-  .tA{background:#412402;color:#FAC775}.tR{background:#4A1B0C;color:#F5C4B3}
-  .tN{background:#2C2C2A;color:#D3D1C7}.tX{background:#501313;color:#F7C1C1}
-  .tP{background:#4B1528;color:#F4C0D1}
-}
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>기말고사 최종 황금 밸런스 계획표</title>
+    <style>
+        :root {
+            --bg-color: #f1f3f5;
+            --card-bg: #ffffff;
+            --text-color: #212529;
+            --border-color: #e9ecef;
+            --math: #ff6b6b;
+            --science: #20c997;
+            --society: #fcc419;
+            --language: #cc5de8;
+            --history: #f783ac;
+            --etc: #4dabf7;
+            --review: #495057;
+        }
+        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background-color: var(--bg-color); color: var(--text-color); margin: 0; padding: 20px; display: flex; justify-content: center; }
+        .container { width: 100%; max-width: 650px; }
+        h1 { text-align: center; font-size: 1.6rem; margin-bottom: 5px; color: #1a1a1a; }
+        .info-text { text-align: center; font-size: 0.9rem; color: #495057; margin-bottom: 20px; font-weight: 500; }
+        
+        .accordion-item { background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 12px; margin-bottom: 12px; overflow: hidden; box-shadow: 0 4px 12px rgba(0,0,0,0.03); }
+        .accordion-header { padding: 18px 20px; display: flex; justify-content: space-between; align-items: center; cursor: pointer; user-select: none; background: #fff; }
+        .accordion-header:hover { background: #f8f9fa; }
+        .date-text { font-weight: bold; font-size: 1.1rem; }
+        
+        .badge { color: white; padding: 4px 10px; border-radius: 6px; font-size: 0.75rem; font-weight: bold; }
+        .badge.exam { background: #fa5252; }
+        .badge.academy { background: #4c6ef5; }
+        
+        .accordion-content { max-height: 0; overflow: hidden; transition: max-height 0.25s ease-out; background: #fdfdfd; }
+        .todo-list { padding: 10px 20px; margin: 0; list-style: none; }
+        .todo-item { display: flex; align-items: flex-start; padding: 14px 0; border-bottom: 1px dashed #e9ecef; }
+        .todo-item:last-child { border-bottom: none; }
+        
+        input[type="checkbox"] { width: 19px; height: 19px; margin-top: 2px; margin-right: 14px; cursor: pointer; }
+        label { cursor: pointer; display: flex; flex-direction: column; gap: 6px; flex-grow: 1; }
+        input[type="checkbox"]:checked + label .task-text { text-decoration: line-through; color: #adb5bd; }
+        
+        .tags { display: flex; gap: 6px; align-items: center; }
+        .tag { font-size: 0.7rem; padding: 2px 6px; border-radius: 4px; font-weight: bold; color: #fff; }
+        .tag.수학 { background: var(--math); }
+        .tag.물리 { background: var(--science); }
+        .tag.화학 { background: #12b886; }
+        .tag.지구과학 { background: #0ca678; }
+        .tag.정보 { background: var(--etc); }
+        .tag.한국사 { background: var(--history); }
+        .tag.통사 { background: var(--society); color: #495057; }
+        .tag.국어 { background: var(--language); }
+        .tag.영어 { background: #5c7cfa; }
+        .tag.복습 { background: var(--review); }
+        
+        .time-slot { font-size: 0.75rem; color: #495057; background: #e9ecef; padding: 2px 6px; border-radius: 4px; font-weight: bold; }
+        .task-text { font-size: 0.95rem; color: #343a40; line-height: 1.45; font-weight: 500; }
+    </style>
 </head>
 <body>
 
-<div class="topbar">
-  <div>
-    <h1>📚 2026 기말고사 공부 플랜</h1>
-    <p class="subtitle">6/15(월) ~ 7/3(금) · 과학고 1학년 · 수학 4회독 + 과학 집중</p>
-  </div>
-  <button class="dl-btn" onclick="download()">⬇ 다운로드</button>
+<div class="container">
+    <h1>🎯 수학 최적화 반영 기말 플랜</h1>
+    <div class="info-text">수학(숙제 1/5 쪼개기 + 샘별 순환 1회독), 이과 2개(각 2h), 문과 순환(1.5h)</div>
+
+    <div id="accordion-container"></div>
 </div>
-
-<div class="priority">
-  <span class="pr pr1">⭐ 최우선: 수학 · 정보</span>
-  <span class="pr pr2">🔬 집중: 지구과학 → 물리 → 생물 → 화학</span>
-  <span class="pr pr3">📖 꾸준히: 국어 · 영어 · 한국사 · 사회 (매일 1시간)</span>
-</div>
-
-<div class="math-plan">
-  <h3>수학 4회독 일정표</h3>
-  <div class="math-grid">
-    <div class="mc"><div class="mc-label">1회독</div><div class="mc-val">6/15~6/17<br><span style="font-size:11px;color:var(--text3)">전체 풀기 + △·✕ 표시</span></div></div>
-    <div class="mc"><div class="mc-label">2회독</div><div class="mc-val">6/20~6/22<br><span style="font-size:11px;color:var(--text3)">오답 해설 보며 이해</span></div></div>
-    <div class="mc"><div class="mc-label">3회독</div><div class="mc-val">6/24~6/26<br><span style="font-size:11px;color:var(--text3)">오답 해설 없이 혼자</span></div></div>
-    <div class="mc"><div class="mc-label">4회독</div><div class="mc-val">6/27~6/28<br><span style="font-size:11px;color:var(--text3)">타이머 시험처럼</span></div></div>
-  </div>
-</div>
-
-<div class="progress-wrap">
-  <div class="progress-title">수학 4회독 진행도</div>
-  <div class="prog-row"><div class="prog-label">신동환 (수학1A)</div><div class="prog-bar"><div class="prog-fill" style="width:0%;background:#534AB7" id="p1"></div></div><div class="prog-count" id="c1">0/4</div></div>
-  <div class="prog-row"><div class="prog-label">이우석 (수학2A)</div><div class="prog-bar"><div class="prog-fill" style="width:0%;background:#534AB7" id="p2"></div></div><div class="prog-count" id="c2">0/4</div></div>
-  <div class="prog-row"><div class="prog-label">김윤희 (수학1B)</div><div class="prog-bar"><div class="prog-fill" style="width:0%;background:#534AB7" id="p3"></div></div><div class="prog-count" id="c3">0/4</div></div>
-  <div class="prog-row"><div class="prog-label">권두현 (수학2B)</div><div class="prog-bar"><div class="prog-fill" style="width:0%;background:#534AB7" id="p4"></div></div><div class="prog-count" id="c4">0/4</div></div>
-</div>
-
-<div class="nav">
-  <button class="nt on" onclick="go('d615',this)">6/15 월</button>
-  <button class="nt" onclick="go('d616',this)">6/16 화</button>
-  <button class="nt" onclick="go('d617',this)">6/17 수</button>
-  <button class="nt" onclick="go('d618',this)">6/18 목</button>
-  <button class="nt" onclick="go('d619',this)">6/19 금</button>
-  <button class="nt" onclick="go('d620',this)">6/20 토</button>
-  <button class="nt" onclick="go('d621',this)">6/21 일</button>
-  <button class="nt" onclick="go('d622',this)">6/22 월</button>
-  <button class="nt" onclick="go('d623',this)">6/23 화</button>
-  <button class="nt" onclick="go('d624',this)">6/24 수</button>
-  <button class="nt" onclick="go('d625',this)">6/25 목</button>
-  <button class="nt" onclick="go('d626',this)">6/26 금</button>
-  <button class="nt" onclick="go('d627',this)">6/27 토</button>
-  <button class="nt" onclick="go('d628',this)">6/28 일</button>
-  <button class="nt" onclick="go('exam',this)">시험기간</button>
-</div>
-
-<!-- ===== 6/15 월 D-14 ===== -->
-<div id="d615" class="pg on">
-<div class="dh wkd"><span class="dt">6/15 (월) — D-14</span><span class="ds">수2A 이우석 4교시 · 수1A 신동환 5교시<br>하교 약 15:10 · 수학 1회독 시작</span></div>
-<div class="body">
-  <div class="tb"><div class="tbh"><span class="tt">07:00 – 08:00</span><span class="tl">등교 전</span></div><div class="rows">
-    <div class="row"><input type="checkbox" onchange="t(this)"><span class="rt"><span class="tag tR">한국사</span>A범위 주제 27 첫 공부 (60분) — 매일 아침 한국사 1주제 고정</span></div>
-  </div></div>
-  <div class="tb"><div class="tbh"><span class="tt">쉬는시간 · 점심</span><span class="tl">틈틈이</span></div><div class="rows">
-    <div class="row"><input type="checkbox" onchange="t(this)"><span class="rt"><span class="tag tN">수업</span>수2A 이우석(4교시) · 수1A 신동환(5교시) 집중 — 프린트 빈칸 채우기</span></div>
-    <div class="row"><input type="checkbox" onchange="t(this)"><span class="rt"><span class="tag tA">국어</span>점심 30분: 음운 변동 규칙 표 정독</span></div>
-  </div></div>
-  <div class="tb"><div class="tbh"><span class="tt">15:10 – 17:30</span><span class="tl">종례 후 · 약 2시간</span></div><div class="rows">
-    <div class="row"><input type="checkbox" onchange="math(this,'p1','c1')"><span class="rt"><span class="tag tM">수학 1회독</span>신동환(수1A) 프린트 전체 — 막히면 △·✕ 표시 후 넘기기, 완주 목표 (90분)</span></div>
-  </div></div>
-  <div class="tb"><div class="tbh"><span class="tt">18:30 – 23:10</span><span class="tl">저녁 · 4시간 40분</span></div><div class="rows">
-    <div class="row"><input type="checkbox" onchange="math(this,'p2','c2')"><span class="rt"><span class="tag tM">수학 1회독</span>이우석(수2A) 프린트 전체 — △·✕ 표시하며 완주 (90분)</span></div>
-    <div class="row"><input type="checkbox" onchange="t(this)"><span class="rt"><span class="tag tE">통합과학1</span>지구과학 파트 교과서 82~87쪽 개념 정리 (90분)</span></div>
-    <div class="row"><input type="checkbox" onchange="t(this)"><span class="rt"><span class="tag tA">국어</span>결혼(이강백) · 차마설(이곡) 지문 전문 읽기 + 한 줄 요약 (40분)</span></div>
-  </div></div>
-</div></div>
-
-<!-- ===== 6/16 화 D-13 ===== -->
-<div id="d616" class="pg">
-<div class="dh wkd"><span class="dt">6/16 (화) — D-13</span><span class="ds">정보A 김하은 5·6교시 · 창체 7교시<br>하교 약 16:10 · 수학 1회독 계속</span></div>
-<div class="body">
-  <div class="tb"><div class="tbh"><span class="tt">07:00 – 08:00</span><span class="tl">등교 전</span></div><div class="rows">
-    <div class="row"><input type="checkbox" onchange="t(this)"><span class="rt"><span class="tag tR">한국사</span>A범위 주제 28 첫 공부 (60분)</span></div>
-  </div></div>
-  <div class="tb"><div class="tbh"><span class="tt">쉬는시간 · 점심</span><span class="tl">틈틈이</span></div><div class="rows">
-    <div class="row"><input type="checkbox" onchange="t(this)"><span class="rt"><span class="tag tN">수업</span>정보A 김하은(5·6교시) 집중 — 클래스룸 자료·실습 내용 메모</span></div>
-    <div class="row"><input type="checkbox" onchange="t(this)"><span class="rt"><span class="tag tA">영어</span>점심 30분: 3과 본문 61~65p 문장별 해석</span></div>
-  </div></div>
-  <div class="tb"><div class="tbh"><span class="tt">16:10 – 17:30</span><span class="tl">종례 후</span></div><div class="rows">
-    <div class="row"><input type="checkbox" onchange="t(this)"><span class="rt"><span class="tag tI">정보</span>수업 복습 + 교과서 p12~29 빅데이터 개념 정리 (80분)</span></div>
-  </div></div>
-  <div class="tb"><div class="tbh"><span class="tt">18:30 – 23:10</span><span class="tl">저녁 · 4시간 40분</span></div><div class="rows">
-    <div class="row"><input type="checkbox" onchange="math(this,'p3','c3')"><span class="rt"><span class="tag tM">수학 1회독</span>김윤희(수1B) 프린트 전체 — △·✕ 표시하며 완주 (90분)</span></div>
-    <div class="row"><input type="checkbox" onchange="t(this)"><span class="rt"><span class="tag tE">통합과학1</span>지구과학 파트 93~97쪽 개념 정리 (90분)</span></div>
-    <div class="row"><input type="checkbox" onchange="t(this)"><span class="rt"><span class="tag tA">영어</span>The World's Favorite Drug 전체 해석 + 어휘 단어장 시작 (60분)</span></div>
-  </div></div>
-</div></div>
-
-<!-- ===== 6/17 수 D-12 ===== -->
-<div id="d617" class="pg">
-<div class="dh wkd"><span class="dt">6/17 (수) — D-12</span><span class="ds">수1A 신동환 6교시<br>하교 약 15:10 · 수학 1회독 마무리</span></div>
-<div class="body">
-  <div class="tb"><div class="tbh"><span class="tt">07:00 – 08:00</span><span class="tl">등교 전</span></div><div class="rows">
-    <div class="row"><input type="checkbox" onchange="t(this)"><span class="rt"><span class="tag tR">한국사</span>A범위 주제 29 첫 공부 (60분)</span></div>
-  </div></div>
-  <div class="tb"><div class="tbh"><span class="tt">쉬는시간 · 점심</span><span class="tl">틈틈이</span></div><div class="rows">
-    <div class="row"><input type="checkbox" onchange="t(this)"><span class="rt"><span class="tag tN">수업</span>수1A 신동환(6교시) 집중</span></div>
-    <div class="row"><input type="checkbox" onchange="t(this)"><span class="rt"><span class="tag tR">한국사</span>점심 30분: 주제 27·28 복습</span></div>
-  </div></div>
-  <div class="tb"><div class="tbh"><span class="tt">15:10 – 17:30</span><span class="tl">종례 후</span></div><div class="rows">
-    <div class="row"><input type="checkbox" onchange="math(this,'p4','c4')"><span class="rt"><span class="tag tM">수학 1회독</span>권두현(수2B) 프린트 전체 — △·✕ 표시하며 완주 (120분) ✅ 1회독 완료!</span></div>
-  </div></div>
-  <div class="tb"><div class="tbh"><span class="tt">18:30 – 23:10</span><span class="tl">저녁 · 4시간 40분</span></div><div class="rows">
-    <div class="row"><input type="checkbox" onchange="t(this)"><span class="rt"><span class="tag tE">통합과학1</span>지구과학 파트 144~163쪽 개념 정리 (90분)</span></div>
-    <div class="row"><input type="checkbox" onchange="t(this)"><span class="rt"><span class="tag tI">정보</span>교과서 p97~118 개요 파악 + 실습 코드 작성 연습 (90분)</span></div>
-    <div class="row"><input type="checkbox" onchange="t(this)"><span class="rt"><span class="tag tA">사회</span>통합사회1 A범위 26~47쪽 마인드맵 (60분)</span></div>
-  </div></div>
-</div></div>
-
-<!-- ===== 6/18 목 D-11 ===== -->
-<div id="d618" class="pg">
-<div class="dh wkd"><span class="dt">6/18 (목) — D-11</span><span class="ds">수2B 권두현 6교시 · 체육 7교시<br>하교 약 16:10 · 수학 쉬어가기 (다음 회독 준비)</span></div>
-<div class="body">
-  <div class="tb"><div class="tbh"><span class="tt">07:00 – 08:00</span><span class="tl">등교 전</span></div><div class="rows">
-    <div class="row"><input type="checkbox" onchange="t(this)"><span class="rt"><span class="tag tR">한국사</span>A범위 주제 30 첫 공부 (60분)</span></div>
-  </div></div>
-  <div class="tb"><div class="tbh"><span class="tt">쉬는시간 · 점심</span><span class="tl">틈틈이</span></div><div class="rows">
-    <div class="row"><input type="checkbox" onchange="t(this)"><span class="rt"><span class="tag tN">수업</span>수2B 권두현(6교시) 집중</span></div>
-    <div class="row"><input type="checkbox" onchange="t(this)"><span class="rt"><span class="tag tR">한국사</span>점심 30분: 주제 29·30 복습</span></div>
-  </div></div>
-  <div class="tb"><div class="tbh"><span class="tt">16:10 – 17:30</span><span class="tl">종례 후</span></div><div class="rows">
-    <div class="row"><input type="checkbox" onchange="t(this)"><span class="rt"><span class="tag tE">통합과학1</span>물리 파트 B범위 48~59쪽 개념 정리 (80분)</span></div>
-  </div></div>
-  <div class="tb"><div class="tbh"><span class="tt">18:30 – 23:10</span><span class="tl">저녁 · 4시간 40분</span></div><div class="rows">
-    <div class="row"><input type="checkbox" onchange="t(this)"><span class="rt"><span class="tag tE">통합과학1</span>물리 파트 80~81, 104~120쪽 개념 정리 (90분)</span></div>
-    <div class="row"><input type="checkbox" onchange="t(this)"><span class="rt"><span class="tag tA">사회</span>통합사회1 B범위 100~137쪽 마인드맵 (90분)</span></div>
-    <div class="row"><input type="checkbox" onchange="t(this)"><span class="rt"><span class="tag tI">정보</span>교과서 p138~169 + 클래스룸 자료 정리 (60분)</span></div>
-  </div></div>
-</div></div>
-
-<!-- ===== 6/19 금 D-10 ===== -->
-<div id="d619" class="pg">
-<div class="dh wkd"><span class="dt">6/19 (금) — D-10</span><span class="ds">수2B 권두현 3교시 · 수1B 김윤희 6교시<br>하교 약 15:10</span></div>
-<div class="body">
-  <div class="tb"><div class="tbh"><span class="tt">07:00 – 08:00</span><span class="tl">등교 전</span></div><div class="rows">
-    <div class="row"><input type="checkbox" onchange="t(this)"><span class="rt"><span class="tag tR">한국사</span>A범위 주제 31 첫 공부 — A범위 완료! (60분)</span></div>
-  </div></div>
-  <div class="tb"><div class="tbh"><span class="tt">쉬는시간 · 점심</span><span class="tl">틈틈이</span></div><div class="rows">
-    <div class="row"><input type="checkbox" onchange="t(this)"><span class="rt"><span class="tag tN">수업</span>수2B 권두현(3교시) · 수1B 김윤희(6교시) 집중</span></div>
-    <div class="row"><input type="checkbox" onchange="t(this)"><span class="rt"><span class="tag tR">한국사</span>점심 30분: A범위 전체 빠르게 훑기</span></div>
-  </div></div>
-  <div class="tb"><div class="tbh"><span class="tt">15:10 – 17:30</span><span class="tl">종례 후</span></div><div class="rows">
-    <div class="row"><input type="checkbox" onchange="t(this)"><span class="rt"><span class="tag tI">정보</span>실습문제 직접 코딩 + 학원 숙제 (90분)</span></div>
-    <div class="row"><input type="checkbox" onchange="t(this)"><span class="rt"><span class="tag tA">국어</span>학습지 문제 절반 풀기 + 오답 확인 (30분)</span></div>
-  </div></div>
-  <div class="tb"><div class="tbh"><span class="tt">18:30 – 23:10</span><span class="tl">저녁 · 4시간 40분</span></div><div class="rows">
-    <div class="row"><input type="checkbox" onchange="t(this)"><span class="rt"><span class="tag tS">통합과학2</span>A~D 범위 교과서 페이지 확인 + 코드 목록 파악 (90분)</span></div>
-    <div class="row"><input type="checkbox" onchange="t(this)"><span class="rt"><span class="tag tA">영어</span>학습지 전체 풀기 + 오답 확인 (90분)</span></div>
-    <div class="row"><input type="checkbox" onchange="t(this)"><span class="rt"><span class="tag tA">국어</span>학습지 나머지 + 음운 변동 암기 (60분)</span></div>
-  </div></div>
-</div></div>
-
-<!-- ===== 6/20 토 D-9 ===== -->
-<div id="d620" class="pg">
-<div class="dh wknd"><span class="dt">6/20 (토) — D-9</span><span class="ds">주말 · 수학 2회독 시작 (1회독 후 3일 경과)</span></div>
-<div class="body">
-  <div class="tb"><div class="tbh"><span class="tt">07:00 – 08:00</span><span class="tl">아침</span></div><div class="rows">
-    <div class="row"><input type="checkbox" onchange="t(this)"><span class="rt"><span class="tag tR">한국사</span>B범위 주제 8 첫 공부 (60분)</span></div>
-  </div></div>
-  <div class="tb"><div class="tbh"><span class="tt">09:00 – 12:30</span><span class="tl">오전 · 수학 2회독 집중</span></div><div class="rows">
-    <div class="row"><input type="checkbox" onchange="math(this,'p1','c1')"><span class="rt"><span class="tag tM">수학 2회독</span>신동환(수1A) — △·✕ 표시 문제 해설 보며 이해, 풀이 과정 다시 쓰기 (90분)</span></div>
-    <div class="row"><input type="checkbox" onchange="math(this,'p2','c2')"><span class="rt"><span class="tag tM">수학 2회독</span>이우석(수2A) — △·✕ 표시 문제 해설 보며 이해 (90분)</span></div>
-  </div></div>
-  <div class="tb"><div class="tbh"><span class="tt">13:30 – 17:30</span><span class="tl">오후 · 정보 + 지구과학</span></div><div class="rows">
-    <div class="row"><input type="checkbox" onchange="t(this)"><span class="rt"><span class="tag tI">정보</span>학원 숙제 + 코드 작성 연습 집중 (90분)</span></div>
-    <div class="row"><input type="checkbox" onchange="t(this)"><span class="rt"><span class="tag tE">통합과학1</span>지구과학 파트 수업자료 문제 전체 풀기 + 오답 확인 (90분)</span></div>
-  </div></div>
-  <div class="tb"><div class="tbh"><span class="tt">18:30 – 23:10</span><span class="tl">저녁 · 4시간 40분</span></div><div class="rows">
-    <div class="row"><input type="checkbox" onchange="math(this,'p3','c3')"><span class="rt"><span class="tag tM">수학 2회독</span>김윤희(수1B) — △·✕ 문제 해설 보며 이해 (90분)</span></div>
-    <div class="row"><input type="checkbox" onchange="t(this)"><span class="rt"><span class="tag tE">통합과학1</span>물리 파트 수업자료 문제 풀기 (90분)</span></div>
-    <div class="row"><input type="checkbox" onchange="t(this)"><span class="rt"><span class="tag tA">사회</span>구글 클래스룸 학습자료 문제 풀기 (60분)</span></div>
-  </div></div>
-</div></div>
-
-<!-- ===== 6/21 일 D-8 ===== -->
-<div id="d621" class="pg">
-<div class="dh wknd"><span class="dt">6/21 (일) — D-8</span><span class="ds">주말 · 수학 2회독 마무리 + 과학2 집중</span></div>
-<div class="body">
-  <div class="tb"><div class="tbh"><span class="tt">07:00 – 08:00</span><span class="tl">아침</span></div><div class="rows">
-    <div class="row"><input type="checkbox" onchange="t(this)"><span class="rt"><span class="tag tR">한국사</span>B범위 주제 9 첫 공부 (60분)</span></div>
-  </div></div>
-  <div class="tb"><div class="tbh"><span class="tt">09:00 – 11:30</span><span class="tl">오전 · 수학 2회독 마무리</span></div><div class="rows">
-    <div class="row"><input type="checkbox" onchange="math(this,'p4','c4')"><span class="rt"><span class="tag tM">수학 2회독</span>권두현(수2B) — △·✕ 문제 해설 보며 이해 (90분) ✅ 2회독 완료!</span></div>
-    <div class="row"><input type="checkbox" onchange="t(this)"><span class="rt"><span class="tag tM">수학</span>오답 유형 분류 노트 작성 — 4명 전체 (계산실수 / 개념 모름 / 풀이방향) (60분)</span></div>
-  </div></div>
-  <div class="tb"><div class="tbh"><span class="tt">13:00 – 17:30</span><span class="tl">오후 · 과학2 + 정보</span></div><div class="rows">
-    <div class="row"><input type="checkbox" onchange="t(this)"><span class="rt"><span class="tag tS">통합과학2</span>물리 파트(B범위) 개념 정리 + 문제 풀기 (90분)</span></div>
-    <div class="row"><input type="checkbox" onchange="t(this)"><span class="rt"><span class="tag tS">통합과학2</span>생물·화학 파트(A·C·D범위) 개념 정리 (90분)</span></div>
-    <div class="row"><input type="checkbox" onchange="t(this)"><span class="rt"><span class="tag tI">정보</span>코드 예제 집중 풀기 (60분)</span></div>
-  </div></div>
-  <div class="tb"><div class="tbh"><span class="tt">18:30 – 23:10</span><span class="tl">저녁 · 4시간 40분</span></div><div class="rows">
-    <div class="row"><input type="checkbox" onchange="t(this)"><span class="rt"><span class="tag tE">통합과학1</span>지구과학 + 물리 파트 오답 집중 복습 (90분)</span></div>
-    <div class="row"><input type="checkbox" onchange="t(this)"><span class="rt"><span class="tag tS">통합과학2</span>전체 수업자료 문제 풀기 + 오답노트 (90분)</span></div>
-    <div class="row"><input type="checkbox" onchange="t(this)"><span class="rt"><span class="tag tR">한국사</span>A범위 주제 27~29 복습 (3개) (60분)</span></div>
-  </div></div>
-</div></div>
-
-<!-- ===== 6/22 월 D-7 ===== -->
-<div id="d622" class="pg">
-<div class="dh wkd"><span class="dt">6/22 (월) — D-7</span><span class="ds">수2A 이우석 4교시 · 수1A 신동환 5교시<br>하교 약 15:10</span></div>
-<div class="body">
-  <div class="tb"><div class="tbh"><span class="tt">07:00 – 08:00</span><span class="tl">등교 전</span></div><div class="rows">
-    <div class="row"><input type="checkbox" onchange="t(this)"><span class="rt"><span class="tag tR">한국사</span>B범위 주제 10 첫 공부 (60분)</span></div>
-  </div></div>
-  <div class="tb"><div class="tbh"><span class="tt">쉬는시간 · 점심</span><span class="tl">틈틈이</span></div><div class="rows">
-    <div class="row"><input type="checkbox" onchange="t(this)"><span class="rt"><span class="tag tN">수업</span>수2A 이우석 · 수1A 신동환 — 마지막 질문 기회 적극 활용</span></div>
-    <div class="row"><input type="checkbox" onchange="t(this)"><span class="rt"><span class="tag tR">한국사</span>점심 30분: A범위 주제 30·31 + B범위 주제 8 복습</span></div>
-  </div></div>
-  <div class="tb"><div class="tbh"><span class="tt">15:10 – 17:30</span><span class="tl">종례 후</span></div><div class="rows">
-    <div class="row"><input type="checkbox" onchange="t(this)"><span class="rt"><span class="tag tI">정보</span>실습문제 코딩 + 오답 정리 (90분)</span></div>
-    <div class="row"><input type="checkbox" onchange="t(this)"><span class="rt"><span class="tag tA">영어</span>어휘 단어장 최종 암기 (30분)</span></div>
-  </div></div>
-  <div class="tb"><div class="tbh"><span class="tt">18:30 – 23:10</span><span class="tl">저녁 · 4시간 40분</span></div><div class="rows">
-    <div class="row"><input type="checkbox" onchange="t(this)"><span class="rt"><span class="tag tE">통합과학1</span>지구과학 파트 오답 2차 집중 복습 (90분)</span></div>
-    <div class="row"><input type="checkbox" onchange="t(this)"><span class="rt"><span class="tag tE">통합과학1</span>물리 파트 암기 개념 최종 정리 (90분)</span></div>
-    <div class="row"><input type="checkbox" onchange="t(this)"><span class="rt"><span class="tag tA">사회</span>마인드맵 + 오답 정리 (60분)</span></div>
-  </div></div>
-</div></div>
-
-<!-- ===== 6/23 화 D-6 ===== -->
-<div id="d623" class="pg">
-<div class="dh wkd"><span class="dt">6/23 (화) — D-6</span><span class="ds">정보A 김하은 5·6교시 · 창체 7교시<br>하교 약 16:10</span></div>
-<div class="body">
-  <div class="tb"><div class="tbh"><span class="tt">07:00 – 08:00</span><span class="tl">등교 전</span></div><div class="rows">
-    <div class="row"><input type="checkbox" onchange="t(this)"><span class="rt"><span class="tag tR">한국사</span>B범위 주제 11 첫 공부 (60분)</span></div>
-  </div></div>
-  <div class="tb"><div class="tbh"><span class="tt">쉬는시간 · 점심</span><span class="tl">틈틈이</span></div><div class="rows">
-    <div class="row"><input type="checkbox" onchange="t(this)"><span class="rt"><span class="tag tN">수업</span>정보A 김하은(5·6교시) 집중 — 실습 메모</span></div>
-    <div class="row"><input type="checkbox" onchange="t(this)"><span class="rt"><span class="tag tR">한국사</span>점심 30분: A범위 퀴즈 (Claude에게 "한국사1 A범위 주제 27~31 퀴즈 내줘" 입력)</span></div>
-  </div></div>
-  <div class="tb"><div class="tbh"><span class="tt">16:10 – 17:30</span><span class="tl">종례 후</span></div><div class="rows">
-    <div class="row"><input type="checkbox" onchange="t(this)"><span class="rt"><span class="tag tI">정보</span>수업 복습 + 코드 예제 풀기 (80분)</span></div>
-  </div></div>
-  <div class="tb"><div class="tbh"><span class="tt">18:30 – 23:10</span><span class="tl">저녁 · 4시간 40분</span></div><div class="rows">
-    <div class="row"><input type="checkbox" onchange="t(this)"><span class="rt"><span class="tag tS">통합과학2</span>전체 오답 집중 + 코드 핵심 복습 (90분)</span></div>
-    <div class="row"><input type="checkbox" onchange="t(this)"><span class="rt"><span class="tag tA">국어</span>음운 변동 최종 암기 + 문학 구절 확인 (60분)</span></div>
-    <div class="row"><input type="checkbox" onchange="t(this)"><span class="rt"><span class="tag tR">한국사</span>B범위 주제 9·10·11 복습 (3개) (60분)</span></div>
-  </div></div>
-</div></div>
-
-<!-- ===== 6/24 수 D-5 ===== -->
-<div id="d624" class="pg">
-<div class="dh wkd"><span class="dt">6/24 (수) — D-5</span><span class="ds">수1A 신동환 6교시<br>하교 약 15:10 · 수학 3회독 시작 (2회독 후 4일 경과)</span></div>
-<div class="body">
-  <div class="tb"><div class="tbh"><span class="tt">07:00 – 08:00</span><span class="tl">등교 전</span></div><div class="rows">
-    <div class="row"><input type="checkbox" onchange="t(this)"><span class="rt"><span class="tag tR">한국사</span>B범위 주제 12 첫 공부 — B범위 완료! (60분)</span></div>
-  </div></div>
-  <div class="tb"><div class="tbh"><span class="tt">쉬는시간 · 점심</span><span class="tl">틈틈이</span></div><div class="rows">
-    <div class="row"><input type="checkbox" onchange="t(this)"><span class="rt"><span class="tag tN">수업</span>수1A 신동환(6교시) — 남은 의문점 마지막 질문</span></div>
-    <div class="row"><input type="checkbox" onchange="t(this)"><span class="rt"><span class="tag tR">한국사</span>점심 30분: B범위 주제 8~10 복습 (3개)</span></div>
-  </div></div>
-  <div class="tb"><div class="tbh"><span class="tt">15:10 – 17:30</span><span class="tl">종례 후</span></div><div class="rows">
-    <div class="row"><input type="checkbox" onchange="math(this,'p1','c1')"><span class="rt"><span class="tag tM">수학 3회독</span>신동환(수1A) — 오답 문제만 해설 없이 혼자 풀기 (120분)</span></div>
-  </div></div>
-  <div class="tb"><div class="tbh"><span class="tt">18:30 – 23:10</span><span class="tl">저녁 · 4시간 40분</span></div><div class="rows">
-    <div class="row"><input type="checkbox" onchange="math(this,'p2','c2')"><span class="rt"><span class="tag tM">수학 3회독</span>이우석(수2A) — 오답 문제만 해설 없이 혼자 풀기 (90분)</span></div>
-    <div class="row"><input type="checkbox" onchange="t(this)"><span class="rt"><span class="tag tE">통합과학1</span>지구과학 파트 최종 암기 + 치트시트 작성 (90분)</span></div>
-    <div class="row"><input type="checkbox" onchange="t(this)"><span class="rt"><span class="tag tI">정보</span>치트시트 완성 + 코드 핵심 암기 (60분)</span></div>
-  </div></div>
-</div></div>
-
-<!-- ===== 6/25 목 D-4 ===== -->
-<div id="d625" class="pg">
-<div class="dh wkd"><span class="dt">6/25 (목) — D-4</span><span class="ds">수2B 권두현 6교시 · 체육 7교시<br>하교 약 16:10 · 수학 3회독 계속</span></div>
-<div class="body">
-  <div class="tb"><div class="tbh"><span class="tt">07:00 – 08:00</span><span class="tl">등교 전</span></div><div class="rows">
-    <div class="row"><input type="checkbox" onchange="t(this)"><span class="rt"><span class="tag tR">한국사</span>B범위 주제 11·12 복습 + A범위 전체 훑기 (60분)</span></div>
-  </div></div>
-  <div class="tb"><div class="tbh"><span class="tt">쉬는시간 · 점심</span><span class="tl">틈틈이</span></div><div class="rows">
-    <div class="row"><input type="checkbox" onchange="t(this)"><span class="rt"><span class="tag tN">수업</span>수2B 권두현(6교시) — 마지막 질문 기회</span></div>
-    <div class="row"><input type="checkbox" onchange="t(this)"><span class="rt"><span class="tag tR">한국사</span>점심 30분: 나랑 B범위 퀴즈 (Claude에게 "한국사1 B범위 주제 8~12 퀴즈 내줘" 입력)</span></div>
-  </div></div>
-  <div class="tb"><div class="tbh"><span class="tt">16:10 – 17:30</span><span class="tl">종례 후</span></div><div class="rows">
-    <div class="row"><input type="checkbox" onchange="math(this,'p3','c3')"><span class="rt"><span class="tag tM">수학 3회독</span>김윤희(수1B) — 오답 문제만 혼자 풀기 (80분)</span></div>
-  </div></div>
-  <div class="tb"><div class="tbh"><span class="tt">18:30 – 23:10</span><span class="tl">저녁 · 4시간 40분</span></div><div class="rows">
-    <div class="row"><input type="checkbox" onchange="math(this,'p4','c4')"><span class="rt"><span class="tag tM">수학 3회독</span>권두현(수2B) — 오답 문제만 혼자 풀기 (90분) ✅ 3회독 완료!</span></div>
-    <div class="row"><input type="checkbox" onchange="t(this)"><span class="rt"><span class="tag tM">수학</span>최종 오답 리스트 완성 — 3회독까지도 틀린 문제만 따로 모으기 (60분)</span></div>
-    <div class="row"><input type="checkbox" onchange="t(this)"><span class="rt"><span class="tag tE">통합과학1</span>물리 파트 최종 암기 확인 (60분)</span></div>
-    <div class="row"><input type="checkbox" onchange="t(this)"><span class="rt"><span class="tag tS">통합과학2</span>최종 오답 + 코드 핵심 (30분)</span></div>
-  </div></div>
-</div></div>
-
-<!-- ===== 6/26 금 D-3 ===== -->
-<div id="d626" class="pg">
-<div class="dh wkd"><span class="dt">6/26 (금) — D-3</span><span class="ds">수2B 권두현 3교시 · 수1B 김윤희 6교시<br>하교 약 15:10 · 이제부터 새 내용 NO</span></div>
-<div class="body">
-  <div class="tb"><div class="tbh"><span class="tt">07:00 – 08:00</span><span class="tl">등교 전</span></div><div class="rows">
-    <div class="row"><input type="checkbox" onchange="t(this)"><span class="rt"><span class="tag tX">D-3 집중</span>6/29 국어1 치트시트 최종 확인 (60분)</span></div>
-  </div></div>
-  <div class="tb"><div class="tbh"><span class="tt">쉬는시간 · 점심</span><span class="tl">틈틈이</span></div><div class="rows">
-    <div class="row"><input type="checkbox" onchange="t(this)"><span class="rt"><span class="tag tN">수업</span>수2B 권두현 · 수1B 김윤희 — 시험 강조 내용 마지막 메모</span></div>
-    <div class="row"><input type="checkbox" onchange="t(this)"><span class="rt"><span class="tag tX">D-3 집중</span>점심 30분: 수학2 최종 오답 리스트 훑기</span></div>
-  </div></div>
-  <div class="tb"><div class="tbh"><span class="tt">15:10 – 17:30</span><span class="tl">종례 후</span></div><div class="rows">
-    <div class="row"><input type="checkbox" onchange="t(this)"><span class="rt"><span class="tag tX">D-3 집중</span>국어1 오답 + 음운 변동 최종 암기 (60분)</span></div>
-    <div class="row"><input type="checkbox" onchange="t(this)"><span class="rt"><span class="tag tX">D-3 집중</span>수학2 최종 오답 리스트 반복 (60분)</span></div>
-  </div></div>
-  <div class="tb"><div class="tbh"><span class="tt">18:30 – 23:10</span><span class="tl">저녁 · 4시간 40분</span></div><div class="rows">
-    <div class="row"><input type="checkbox" onchange="t(this)"><span class="rt"><span class="tag tX">D-3 집중</span>영어1 지문 마지막 읽기 + 어휘 단어장 최종 암기 (90분)</span></div>
-    <div class="row"><input type="checkbox" onchange="t(this)"><span class="rt"><span class="tag tX">D-3 집중</span>통합과학1 지구과학 파트 치트시트 최종 확인 (90분)</span></div>
-    <div class="row"><input type="checkbox" onchange="t(this)"><span class="rt"><span class="tag tN">치트시트</span>국어1 · 수학2 · 영어1 · 과학1 요약 1장씩 완성 (60분)</span></div>
-  </div></div>
-</div></div>
-
-<!-- ===== 6/27 토 D-2 ===== -->
-<div id="d627" class="pg">
-<div class="dh wknd"><span class="dt">6/27 (토) — D-2</span><span class="ds">주말 · 수학 4회독 (3회독 후 2일 경과) + 나머지 과목 최종</span></div>
-<div class="body">
-  <div class="tb"><div class="tbh"><span class="tt">07:00 – 08:00</span><span class="tl">아침</span></div><div class="rows">
-    <div class="row"><input type="checkbox" onchange="t(this)"><span class="rt"><span class="tag tR">한국사</span>A·B 범위 전체 최종 복습 — 흐름도 보며 인과관계 말하기 (60분)</span></div>
-  </div></div>
-  <div class="tb"><div class="tbh"><span class="tt">09:00 – 12:30</span><span class="tl">오전 · 수학 4회독</span></div><div class="rows">
-    <div class="row"><input type="checkbox" onchange="math(this,'p1','c1')"><span class="rt"><span class="tag tM">수학 4회독</span>신동환(수1A) 타이머 맞추고 처음부터 전체 풀기 — 시험처럼 (90분)</span></div>
-    <div class="row"><input type="checkbox" onchange="math(this,'p2','c2')"><span class="rt"><span class="tag tM">수학 4회독</span>이우석(수2A) 타이머 맞추고 전체 풀기 (90분)</span></div>
-  </div></div>
-  <div class="tb"><div class="tbh"><span class="tt">13:30 – 17:30</span><span class="tl">오후</span></div><div class="rows">
-    <div class="row"><input type="checkbox" onchange="math(this,'p3','c3')"><span class="rt"><span class="tag tM">수학 4회독</span>김윤희(수1B) 타이머 맞추고 전체 풀기 (90분)</span></div>
-    <div class="row"><input type="checkbox" onchange="math(this,'p4','c4')"><span class="rt"><span class="tag tM">수학 4회독</span>권두현(수2B) 타이머 맞추고 전체 풀기 (90분) ✅ 4회독 완료!</span></div>
-  </div></div>
-  <div class="tb"><div class="tbh"><span class="tt">18:30 – 23:10</span><span class="tl">저녁 · 4시간 40분</span></div><div class="rows">
-    <div class="row"><input type="checkbox" onchange="t(this)"><span class="rt"><span class="tag tM">수학</span>4회독 채점 + 최종 오답 리스트 업데이트 (60분)</span></div>
-    <div class="row"><input type="checkbox" onchange="t(this)"><span class="rt"><span class="tag tX">D-2 집중</span>통합사회1 마인드맵 + 오답 최종 확인 (60분)</span></div>
-    <div class="row"><input type="checkbox" onchange="t(this)"><span class="rt"><span class="tag tX">D-2 집중</span>수학1 최종 오답 리스트 반복 (60분)</span></div>
-    <div class="row"><input type="checkbox" onchange="t(this)"><span class="rt"><span class="tag tN">치트시트</span>사회1 · 수학1 · 한국사1 · 정보 · 과학2 요약 1장씩 완성 (60분)</span></div>
-  </div></div>
-</div></div>
-
-<!-- ===== 6/28 일 D-1 ===== -->
-<div id="d628" class="pg">
-<div class="dh wknd"><span class="dt">6/28 (일) — D-1 전날</span><span class="ds">새 내용 절대 금지 · 밤 11시 취침 목표</span></div>
-<div class="body">
-  <div class="tb"><div class="tbh"><span class="tt">07:00 – 08:00</span><span class="tl">아침</span></div><div class="rows">
-    <div class="row"><input type="checkbox" onchange="t(this)"><span class="rt"><span class="tag tX">전날</span>국어1 · 수학2 치트시트만 — 가장 부족한 것 최종 확인</span></div>
-  </div></div>
-  <div class="tb"><div class="tbh"><span class="tt">09:00 – 12:00</span><span class="tl">오전</span></div><div class="rows">
-    <div class="row"><input type="checkbox" onchange="t(this)"><span class="rt"><span class="tag tM">수학</span>최종 오답 리스트만 — 새 문제 절대 NO, 틀렸던 것만 (90분)</span></div>
-    <div class="row"><input type="checkbox" onchange="t(this)"><span class="rt"><span class="tag tE">통합과학1</span>지구과학 파트 치트시트 최종 확인 (30분)</span></div>
-  </div></div>
-  <div class="tb"><div class="tbh"><span class="tt">13:00 – 17:00</span><span class="tl">오후 · 전 과목 치트시트 훑기 (각 15분)</span></div><div class="rows">
-    <div class="row"><input type="checkbox" onchange="t(this)"><span class="rt"><span class="tag tA">사회1</span>마인드맵 15분</span></div>
-    <div class="row"><input type="checkbox" onchange="t(this)"><span class="rt"><span class="tag tM">수학1</span>최종 오답 리스트 15분</span></div>
-    <div class="row"><input type="checkbox" onchange="t(this)"><span class="rt"><span class="tag tR">한국사1</span>시대 흐름도 15분</span></div>
-    <div class="row"><input type="checkbox" onchange="t(this)"><span class="rt"><span class="tag tI">정보</span>핵심 코드·개념 15분</span></div>
-    <div class="row"><input type="checkbox" onchange="t(this)"><span class="rt"><span class="tag tS">통합과학2</span>요약 노트 15분</span></div>
-  </div></div>
-  <div class="tb"><div class="tbh"><span class="tt">17:00 – 23:00</span><span class="tl">저녁 · 일찍 마무리</span></div><div class="rows">
-    <div class="row"><input type="checkbox" onchange="t(this)"><span class="rt"><span class="tag tN">준비물</span>필기구 · 수험표 · 준비물 가방에 챙기기</span></div>
-    <div class="row"><input type="checkbox" onchange="t(this)"><span class="rt"><span class="tag tN">수면</span>23시 취침 — 밤샘 절대 금지</span></div>
-  </div></div>
-</div></div>
-
-<!-- ===== 시험 기간 ===== -->
-<div id="exam" class="pg">
-<div class="dh exam"><span class="dt">시험 기간 — 6/29(월) ~ 7/3(금)</span><span class="ds">아침 치트시트 15분 → 시험 → 즉시 다음 과목 전환</span></div>
-<div class="body">
-  <div class="tb"><div class="tbh"><span class="tt">6/29 (월)</span><span class="tl">1교시 공통국어1 · 2교시 공통수학2</span></div><div class="rows">
-    <div class="row"><input type="checkbox" onchange="t(this)"><span class="rt"><span class="tag tX">아침</span>국어1 치트시트 15분 → 수학2 최종 오답 리스트 15분</span></div>
-    <div class="row"><input type="checkbox" onchange="t(this)"><span class="rt"><span class="tag tN">시험 후</span>즉시 6/30 전환 — 영어1 지문 + 통합과학1 지구과학 파트 치트시트</span></div>
-  </div></div>
-  <div class="tb"><div class="tbh"><span class="tt">6/30 (화)</span><span class="tl">1교시 공통영어1 · 2교시 통합과학1</span></div><div class="rows">
-    <div class="row"><input type="checkbox" onchange="t(this)"><span class="rt"><span class="tag tX">아침</span>영어1 어휘 단어장 10분 → 과학1 지구과학 파트 치트시트 20분</span></div>
-    <div class="row"><input type="checkbox" onchange="t(this)"><span class="rt"><span class="tag tN">시험 후</span>즉시 7/1 전환 — 사회1 마인드맵 + 수학1 최종 오답 리스트</span></div>
-  </div></div>
-  <div class="tb"><div class="tbh"><span class="tt">7/1 (수)</span><span class="tl">1교시 통합사회1 · 2교시 공통수학1</span></div><div class="rows">
-    <div class="row"><input type="checkbox" onchange="t(this)"><span class="rt"><span class="tag tX">아침</span>사회1 치트시트 15분 → 수학1 최종 오답 리스트 15분</span></div>
-    <div class="row"><input type="checkbox" onchange="t(this)"><span class="rt"><span class="tag tN">시험 후</span>즉시 7/2 전환 — 한국사1 흐름도 + 정보 핵심 코드·개념</span></div>
-  </div></div>
-  <div class="tb"><div class="tbh"><span class="tt">7/2 (목)</span><span class="tl">1교시 한국사1 · 2교시 정보</span></div><div class="rows">
-    <div class="row"><input type="checkbox" onchange="t(this)"><span class="rt"><span class="tag tX">아침</span>한국사1 흐름도 15분 → 정보 핵심 코드 15분</span></div>
-    <div class="row"><input type="checkbox" onchange="t(this)"><span class="rt"><span class="tag tN">시험 후</span>즉시 7/3 전환 — 통합과학2 치트시트 최종 확인</span></div>
-  </div></div>
-  <div class="tb"><div class="tbh"><span class="tt">7/3 (금)</span><span class="tl">1교시 통합과학2 · 마지막!</span></div><div class="rows">
-    <div class="row"><input type="checkbox" onchange="t(this)"><span class="rt"><span class="tag tX">아침</span>통합과학2 치트시트 + 물리·생물·화학 핵심 코드 20분</span></div>
-    <div class="row"><input type="checkbox" onchange="t(this)"><span class="rt"><span class="tag tP">🎉 완료</span>기말고사 끝! 정말 수고했어.</span></div>
-  </div></div>
-</div></div>
 
 <script>
-var counts={p1:0,p2:0,p3:0,p4:0};
-function go(id,el){
-  document.querySelectorAll('.pg').forEach(p=>p.classList.remove('on'));
-  document.querySelectorAll('.nt').forEach(n=>n.classList.remove('on'));
-  document.getElementById(id).classList.add('on');
-  el.classList.add('on');
-}
-function t(el){
-  var s=el.parentElement.querySelector('.rt');
-  if(s)s.classList.toggle('x');
-}
-function math(el,pid,cid){
-  var s=el.parentElement.querySelector('.rt');
-  if(s)s.classList.toggle('x');
-  counts[pid]=Math.max(0,Math.min(4,counts[pid]+(el.checked?1:-1)));
-  document.getElementById(pid).style.width=Math.round(counts[pid]/4*100)+'%';
-  document.getElementById(cid).textContent=counts[pid]+'/4';
-}
-function download(){
-  var b=new Blob([document.documentElement.outerHTML],{type:'text/html;charset=utf-8'});
-  var a=document.createElement('a');
-  a.href=URL.createObjectURL(b);
-  a.download='기말고사_공부플랜_2026.html';
-  a.click();
-  URL.revokeObjectURL(a.href);
-}
+    const data = [
+        // 1주차
+        { date: "6/15 (월)", tasks: [
+            { slot: "07:00-08:00", subj: "한국사", txt: "아침 루틴: 한국사 주제 1개 격파 (교과서 정독)" },
+            { slot: "방과후 수학", subj: "수학", txt: "학원 숙제 1/5 분량(약 16문항) 풀기 + 공수2 [A샘] 프린트 완벽 1회독" },
+            { slot: "이과 2시간+", subj: "물리", txt: "물리 단원별 핵심 개념 요약 및 필수 기출 문항 풀이" },
+            { slot: "이과 2시간+", subj: "화학", txt: "화학 반응식 유인물 집중 분석 및 취약 유형 정복" },
+            { slot: "문과 1.5시간+", subj: "영어", txt: "영어 교과서/부교재 지문 분석 및 구문 정리" },
+            { slot: "밤 마무리", subj: "복습", txt: "오늘 공부한 문/이과 핵심 키워드 백지 인출 테스트 (30분)" }
+        ]},
+        { date: "6/16 (화)", tasks: [
+            { slot: "07:00-08:00", subj: "한국사", txt: "아침 루틴: 한국사 주제 1개 격파" },
+            { slot: "방과후 수학", subj: "수학", txt: "학원 숙제 이어서 1/5 분량 풀기 + 공수2 [B샘] 프린트 완벽 1회독" },
+            { slot: "이과 2시간+", subj: "지구과학", txt: "지구과학 학교 PPT 및 판서 내용 서술형 대비 암기" },
+            { slot: "이과 2시간+", subj: "정보", txt: "정렬 알고리즘 기본 개념 이해 및 주요 코드 흐름 분석" },
+            { slot: "문과 1.5시간+", subj: "국어", txt: "국어 문법 핵심 이론 정리 및 대표 예제 풀이" },
+            { slot: "밤 마무리", subj: "복습", txt: "오늘 암기한 지구과학/정보/국어 핵심 포인트 30분 복습" }
+        ]},
+        { date: "6/17 (수)", tasks: [
+            { slot: "07:00-08:00", subj: "한국사", txt: "아침 루틴: 한국사 주제 1개 격파" },
+            { slot: "방과후 수학", subj: "수학", txt: "학원 숙제 이어서 1/5 분량 풀기 + 공수1 [A샘] 프린트 완벽 1회독" },
+            { slot: "이과 2시간+", subj: "물리", txt: "물리 모의고사 기출문제 풀이 및 오답 분석" },
+            { slot: "이과 2시간+", subj: "화학", txt: "화학 양적 관계 고난도 문항 집중 트레이닝" },
+            { slot: "문과 1.5시간+", subj: "통사", txt: "통합사회 교과서 날개 내용까지 꼼꼼하게 암기" },
+            { slot: "밤 마무리", subj: "복습", txt: "오늘의 물리/화학 틀린 문항 원인 분석 및 백지 인출" }
+        ]},
+        { date: "6/18 (목)", tasks: [
+            { slot: "07:00-08:00", subj: "한국사", txt: "아침 루틴: 한국사 주제 1개 격파" },
+            { slot: "방과후 수학", subj: "수학", txt: "학원 숙제 이어서 1/5 분량 풀기 + 공수1 [B샘] 프린트 완벽 1회독" },
+            { slot: "이과 2시간+", subj: "지구과학", txt: "지구과학 빈칸 유인물 채우기 및 모의고사 선지 분석" },
+            { slot: "이과 2시간+", subj: "정보", txt: "직접 정렬 알고리즘 코드 구현 및 디버깅 실습 복습" },
+            { slot: "문과 1.5시간+", subj: "영어", txt: "영어 주요 지문 조건형 서술형 영작 연습" },
+            { slot: "밤 마무리", subj: "복습", txt: "오늘 진행한 영어 서술형 및 정보 코드 라인 복습" }
+        ]},
+        { date: "6/19 (금)", academy: "학원 18-21", tasks: [
+            { slot: "07:00-08:00", subj: "한국사", txt: "아침 루틴: 한국사 주제 1개 격파" },
+            { slot: "방과후 수학", subj: "수학", txt: "이번 주 남은 숙제 1/5 분량 최종 마무리 및 오답 체크" },
+            { slot: "이과 2시간+", subj: "화학", txt: "학원 연계 화학 심화 프린트 오답 및 재풀이" },
+            { slot: "문과 1.5시간+", subj: "국어", txt: "국어 문학 작품간 공통점/차이점 비교 분석 학습" }
+        ]},
+        { date: "6/20 (토) ~ 6/21 (일)", academy: "주말 학원&복습", tasks: [
+            { slot: "주말 오전고정", subj: "복습", txt: "통복습 타임(09:00-12:00): 평일에 순환하며 틀렸던 수학 프린트 문항만 빠르게 다시 풀기" },
+            { slot: "주말 저녁활용", subj: "지구과학", txt: "지구과학 주중 진도 보완 및 심화 문제 2시간 이상 투자" },
+            { slot: "주말 저녁활용", subj: "통사", txt: "통합사회 대단원 핵심 요약본 만들기 1.5시간 이상 투자" }
+        ]},
+        // 2주차
+        { date: "6/22 (월)", tasks: [
+            { slot: "07:00-08:00", subj: "한국사", txt: "아침 루틴: 한국사 누적 범위 흐름 잡기" },
+            { slot: "방과후 수학", subj: "수학", txt: "새 주차 학원 숙제 1/5 풀기 + 공수2 [A샘] 프린트 누적 2회독" },
+            { slot: "이과 2시간+", subj: "물리", txt: "AI 활용 물리 취약 공식 유도 및 서술형 문항 연습" },
+            { slot: "이과 2시간+", subj: "화학", txt: "화학 전범위 모의고사 1회 풀고 킬러 문항 분석" },
+            { slot: "문과 1.5시간+", subj: "영어", txt: "Gemini 활용 영어 지문 변형(어법/어휘) 문제 격파" },
+            { slot: "밤 마무리", subj: "복습", txt: "틀린 문제 위주 30분 집중 인출" }
+        ]},
+        { date: "6/23 (화)", tasks: [
+            { slot: "07:00-08:00", subj: "한국사", txt: "아침 루틴: 한국사 주제 암기" },
+            { slot: "방과후 수학", subj: "수학", txt: "학원 숙제 이어서 1/5 풀기 + 공수2 [B샘] 프린트 누적 2회독" },
+            { slot: "이과 2시간+", subj: "지구과학", txt: "Claude와 지구과학 개념 묻고 답하기 백지 퀴즈 수행" },
+            { slot: "이과 2시간+", subj: "정보", txt: "정보 시험 범위 내 응용 코드 변형 조건 분석" },
+            { slot: "문과 1.5시간+", subj: "국어", txt: "Gemini 출제 국어 문법 서답형 예상문제 풀이" }
+        ]},
+        { date: "6/24 (수) ~ 6/26 (금)", academy: "평일 완주 루틴", tasks: [
+            { slot: "순환 원칙", subj: "수학", txt: "수학: 매일 숙제 1/5 + [공수1 A샘 ➡️ B샘] 순으로 프린트 회독 계속 유지" }
+        ]},
+        { date: "6/27 (토) ~ 6/28 (일)", academy: "시험 직전 보충", tasks: [
+            { slot: "내신 직전", subj: "국어", txt: "월요일 첫 시험: 국어 전 지문 및 외부 지문 연계 완벽 암기" },
+            { slot: "내신 직전", subj: "수학", txt: "월요일 첫 시험: 공수2 전체 샘들 프린트 최종 눈으로 스캔 및 오답 확인" }
+        ]},
+        // 3주차 (실전 시험)
+        { date: "6/29 (월) ~ 7/3 (금)", exam: "실전 내신 시험", tasks: [
+            { slot: "시험 기간", subj: "복습", txt: "당일 시험 종료 후, 다음 날 치르는 과목 교과서 및 유인물 벼락치기 정독 올인" },
+            { slot: "7/3 (금)", subj: "복습", txt: "마지막 교시 종료! 기말고사 최종 완주 성공 🌟 수고했다!" }
+        ]}
+    ];
+
+    const container = document.getElementById('accordion-container');
+
+    data.forEach((day, dayIdx) => {
+        const item = document.createElement('div');
+        item.className = 'accordion-item';
+        
+        let badge = '';
+        if (day.exam) badge = `<span class="badge exam">${day.exam}</span>`;
+        else if (day.academy) badge = `<span class="badge academy">${day.academy}</span>`;
+        
+        item.innerHTML = `
+            <div class="accordion-header" onclick="toggleAccordion(this)">
+                <div class="date-info">
+                    <span class="date-text">${day.date}</span>
+                    ${badge}
+                </div>
+                <span class="icon">▼</span>
+            </div>
+            <div class="accordion-content">
+                <ul class="todo-list">
+                    ${day.tasks.map((task, taskIdx) => {
+                        const id = `task-${dayIdx}-${taskIdx}`;
+                        return `
+                            <li class="todo-item">
+                                <input type="checkbox" id="${id}" onchange="saveStatus('${id}')">
+                                <label for="${id}">
+                                    <div class="tags">
+                                        <span class="time-slot">${task.slot}</span>
+                                        <span class="tag ${task.subj}">${task.subj}</span>
+                                    </div>
+                                    <div class="task-text">${task.txt}</div>
+                                </label>
+                            </li>
+                        `;
+                    }).join('')}
+                </ul>
+            </div>
+        `;
+        container.appendChild(item);
+    });
+
+    function toggleAccordion(header) {
+        const item = header.parentElement;
+        const content = header.nextElementSibling;
+        
+        if (item.classList.contains('active')) {
+            item.classList.remove('active');
+            content.style.maxHeight = null;
+        } else {
+            document.querySelectorAll('.accordion-item').forEach(el => {
+                el.classList.remove('active');
+                el.querySelector('.accordion-content').style.maxHeight = null;
+            });
+            item.classList.add('active');
+            content.style.maxHeight = content.scrollHeight + "px";
+        }
+    }
+
+    function saveStatus(id) {
+        const checkbox = document.getElementById(id);
+        localStorage.setItem(id, checkbox.checked);
+    }
+
+    window.onload = function() {
+        document.querySelectorAll('input[type="checkbox"]').forEach(checkbox => {
+            const saved = localStorage.getItem(checkbox.id);
+            if (saved === 'true') {
+                checkbox.checked = true;
+            }
+        });
+    }
 </script>
 </body>
 </html>
